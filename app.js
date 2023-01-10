@@ -1,13 +1,16 @@
+//If game is end show us the score.
 function populate() {
   if (quiz.isEnded()) {
     showScores();
+    // If is not end show the next question
   } else {
-    // show question
+    // show question (populate our quesitons)
     var element = document.getElementById("question");
     element.innerHTML = quiz.getQuestionIndex().text;
 
-    // show choices
+    // show choices (populate our choices)
     var choices = quiz.getQuestionIndex().choices;
+    // loop to be able to select any of the four options
     for (var i = 0; i < choices.length; i++) {
       var element = document.getElementById("choice" + i);
       element.innerHTML = choices[i];
@@ -18,6 +21,7 @@ function populate() {
   }
 }
 
+//
 function guess(id, guess) {
   var button = document.getElementById(id);
   button.onclick = function () {
@@ -26,6 +30,7 @@ function guess(id, guess) {
   };
 }
 
+// Will detect if the user select the right or the wrong answer
 function showProgress() {
   var currentQuestionNumber = quiz.questionIndex + 1;
   var element = document.getElementById("progress");
@@ -40,6 +45,7 @@ function showScores() {
   element.innerHTML = gameOverHtml;
 }
 
+//Trivia questions
 var questions = [
   new Question(
     "How many canvases of Marilyn Monroe make up the Andy Warhol piece ‘Shot Marilyns’?",
@@ -98,6 +104,7 @@ var questions = [
   ),
 ];
 
+//
 var quiz = new Quiz(questions);
 
 populate();
